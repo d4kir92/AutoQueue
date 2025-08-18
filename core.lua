@@ -10,7 +10,7 @@ function AutoQueue:InitAutoQueue()
 					0.01,
 					function()
 						CompleteLFGRoleCheck(true)
-					end
+					end, "CompleteLFGRoleCheck"
 				)
 			end
 		end, "LFG_ROLE_CHECK_SHOW"
@@ -21,7 +21,6 @@ end
 
 function AutoQueue:ThinkLFD()
 	if LFDRoleCheckPopup and LFDRoleCheckPopup:IsVisible() then
-		print("VISIBLE")
 		CompleteLFGRoleCheck(true)
 		AutoQueue:After(
 			0.2,
@@ -46,7 +45,7 @@ AutoQueue:OnEvent(
 	function()
 		AutoQueue:UnregisterEvent(auf, "PLAYER_LOGIN")
 		AutoQueue:SetAddonOutput("AutoQueue", 136056)
-		AutoQueue:SetVersion(136056, "1.0.2")
+		AutoQueue:SetVersion(136056, "1.0.3")
 		if AQTAB == nil then
 			AQTAB = AQTAB or {}
 		end
