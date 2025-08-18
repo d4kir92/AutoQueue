@@ -46,7 +46,7 @@ AutoQueue:OnEvent(
 	function()
 		AutoQueue:UnregisterEvent(auf, "PLAYER_LOGIN")
 		AutoQueue:SetAddonOutput("AutoQueue", 136056)
-		AutoQueue:SetVersion(136056, "1.0.1")
+		AutoQueue:SetVersion(136056, "1.0.2")
 		if AQTAB == nil then
 			AQTAB = AQTAB or {}
 		end
