@@ -1,0 +1,34 @@
+## Interface-Classic: 11507
+## Interface-BCC: 20504
+## Interface-Wrath: 30403
+## Interface-Cata: 40402
+## Interface-Mists: 50500
+## Interface: 110107, 110200
+
+## Version: 1.0.0
+## Title: A|cff3FC7EButo|rQ|cff3FC7EBueue|r by |cff3FC7EBD4KiR |T132115:16:16:0:0|t 
+## Notes: Auto accept queues.
+## Notes-deDE: Nimmt automatisch Warteschlangen an.
+## Author: D|cff3FC7EB4KiR |T132115:16:16:0:0|t
+## Category: D|cff3FC7EB4KiR |T132115:16:16:0:0|t
+## X-Category: D|cff3FC7EB4KiR |T132115:16:16:0:0|t
+## DefaultState: enabled
+## SavedVariables: AQTAB
+## SavedVariablesPerCharacter: AQTABPC
+## X-Curse-Project-ID: 1330030
+## X-Wago-ID: aNDmgp6o
+## IconTexture: 136056
+
+libs\D4Lib\D4Lib.xml
+
+locale\enUS.lua
+locale\deDE.lua
+locale\esES.lua
+locale\frFR.lua
+locale\itIT.lua
+locale\koKR.lua
+locale\ptBR.lua
+locale\ruRU.lua
+locale\zhCN.lua
+
+core.lua
