@@ -2,10 +2,10 @@
 ## Interface-BCC: 20504
 ## Interface-Wrath: 30300, 30403
 ## Interface-Cata: 40402
-## Interface-Mists: 50502
-## Interface: 110205, 110207, 120000
+## Interface-Mists: 50503
+## Interface: 110207, 120000
 
-## Version: 1.0.13
+## Version: 1.0.14
 ## Title: A|cff3FC7EButo|rQ|cff3FC7EBueue|r by |cff3FC7EBD4KiR |T132115:16:16:0:0|t 
 ## Notes: Auto accept queues.
 ## Notes-deDE: Nimmt automatisch Warteschlangen an.
