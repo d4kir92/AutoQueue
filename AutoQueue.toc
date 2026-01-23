@@ -5,7 +5,7 @@
 ## Interface-Mists: 50503
 ## Interface: 110207, 120000
 
-## Version: 1.0.15
+## Version: 1.0.16
 ## Title: A|cff3FC7EButo|rQ|cff3FC7EBueue|r by |cff3FC7EBD4KiR |T132115:16:16:0:0|t 
 ## Notes: Auto accept queues.
 ## Notes-deDE: Nimmt automatisch Warteschlangen an.
