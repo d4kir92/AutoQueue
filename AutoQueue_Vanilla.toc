@@ -1,5 +1,5 @@
 ## Interface: 11508
-## Version: 1.0.18
+## Version: 1.0.19
 ## Title: A|cff3FC7EButo|rQ|cff3FC7EBueue|r |T136056:16:16:0:0|t by |cff3FC7EBD4KiR |T132115:16:16:0:0|t 
 ## Notes: Auto accept queues.
 ## Notes-deDE: Nimmt automatisch Warteschlangen an.
