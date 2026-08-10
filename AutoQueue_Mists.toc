@@ -1,8 +1,17 @@
 ## Interface: 50504
-## Version: 1.0.33
+## Version: 1.0.34
 ## Title: AutoQueue |T136056:16:16:0:0|t by |cff55d2ffD4KiR |T132115:16:16:0:0|t 
 ## Notes: Auto accept queues.
 ## Notes-deDE: Nimmt automatisch Warteschlangen an.
+## Notes-esES: Acepta automáticamente las colas.
+## Notes-esMX: Acepta automáticamente las colas.
+## Notes-frFR: Accepte automatiquement les files d'attente.
+## Notes-itIT: Accetta automaticamente le code.
+## Notes-koKR: 대기열을 자동으로 수락합니다.
+## Notes-ptBR: Aceita filas automaticamente.
+## Notes-ruRU: Автоматически принимает очереди.
+## Notes-zhCN: 自动接受队列。
+## Notes-zhTW: 自動接受佇列。
 ## Author: D4KiR |T132115:16:16:0:0|t
 ## Category: Dungeons & Raids
 ## Category-deDE: Dungeons & Schlachtzüge
