@@ -1,5 +1,5 @@
 ## Interface: 11509
-## Version: 1.0.34
+## Version: 1.0.35
 ## Title: AutoQueue |T136056:16:16:0:0|t by |cff55d2ffD4KiR |T132115:16:16:0:0|t 
 ## Notes: Auto accept queues.
 ## Notes-deDE: Nimmt automatisch Warteschlangen an.
@@ -33,14 +33,16 @@
 
 libs\D4Lib\D4Lib.xml
 
-locale\enUS.lua
 locale\deDE.lua
+locale\enUS.lua
 locale\esES.lua
+locale\esMX.lua
 locale\frFR.lua
 locale\itIT.lua
 locale\koKR.lua
 locale\ptBR.lua
 locale\ruRU.lua
 locale\zhCN.lua
+locale\zhTW.lua
 
 core.lua
