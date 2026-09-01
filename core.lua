@@ -1,30 +1,30 @@
 local _, AutoQueue = ...
 local queueExists = false
-local requeueBtn = nil
-local requeueBtn2 = nil
-function AutoQueue:UpdateReQueue()
-	if requeueBtn == nil then return end
+local delistBtn = nil
+local relistBtn = nil
+function AutoQueue:UpdateDelistBtn()
+	if delistBtn == nil then return end
 	if AutoQueue:GV(AQTAB, "REQUEUE", true) then
-		requeueBtn:Show()
+		delistBtn:Show()
 	else
-		requeueBtn:Hide()
+		delistBtn:Hide()
 	end
 end
 
-function AutoQueue:UpdateReQueue2()
-	if requeueBtn2 == nil then return end
+function AutoQueue:UpdateRelistBtn()
+	if relistBtn == nil then return end
 	if AutoQueue:GV(AQTAB, "REQUEUE", true) then
 		if queueExists then
-			requeueBtn2:Show()
+			relistBtn:Show()
 		else
-			requeueBtn2:Hide()
+			relistBtn:Hide()
 		end
 	else
-		requeueBtn2:Hide()
+		relistBtn:Hide()
 	end
 end
 
-function AutoQueue:ReQueue(text)
+function AutoQueue:Delist(text)
 	if LFGListFrame == nil then
 		AutoQueue:ERR("Missing LFGListFrame")
 		return
@@ -42,10 +42,10 @@ function AutoQueue:ReQueue(text)
 
 	LFGListFrame.ApplicationViewer.RemoveEntryButton:Click()
 	queueExists = true
-	AutoQueue:UpdateReQueue2()
+	AutoQueue:UpdateRelistBtn()
 end
 
-function AutoQueue:ReQueue2(text)
+function AutoQueue:Relist(text)
 	if LFGListFrame.CategorySelection == nil then
 		AutoQueue:ERR("Missing CategorySelection")
 		return
@@ -97,36 +97,44 @@ function AutoQueue:InitReQueue()
 		return
 	end
 
-	local btn = AutoQueue:CreateButton("ReQueue", LFGListFrame.ApplicationViewer.RemoveEntryButton)
-	btn:SetSize(22, 22)
-	btn:SetPoint("RIGHT", LFGListFrame.ApplicationViewer.EditButton, "RIGHT", 0, 0)
-	btn:SetText("|T851904:0:0:0:0|t")
-	btn:SetScript("OnClick", function()
+	if LFGListFrame.CategorySelection == nil then
+		AutoQueue:ERR("Missing CategorySelection")
+		return
+	end
+
+	if LFGListFrame.CategorySelection.FindGroupButton == nil then
+		AutoQueue:ERR("Missing FindGroupButton")
+		return
+	end
+
+	delistBtn = AutoQueue:CreateButton("AutoQueueDelistBtn", LFGListFrame.ApplicationViewer.RemoveEntryButton)
+	delistBtn:SetSize(22, 22)
+	delistBtn:SetPoint("RIGHT", LFGListFrame.ApplicationViewer.EditButton, "RIGHT", 0, 0)
+	delistBtn:SetText("|T851904:0:0:0:0|t")
+	delistBtn:SetScript("OnClick", function()
 		if LFGListFrame == nil then
 			AutoQueue:ERR("Missing LFGListFrame")
 			return
 		end
 
-		if LFGListFrame.ApplicationViewer.EntryName then AutoQueue:ReQueue(LFGListFrame.ApplicationViewer.EntryName:GetText()) end
+		if LFGListFrame.ApplicationViewer.EntryName then AutoQueue:Delist(LFGListFrame.ApplicationViewer.EntryName:GetText()) end
 	end)
 
-	requeueBtn = btn
-	local btn2 = AutoQueue:CreateButton("ReQueue", LFGListFrame.CategorySelection.FindGroupButton)
-	btn2:SetSize(22, 22)
-	btn2:SetPoint("RIGHT", LFGListFrame.ApplicationViewer.EditButton, "RIGHT", 0, 0)
-	btn2:SetText("|T851904:0:0:0:0|t")
-	btn2:SetScript("OnClick", function()
+	relistBtn = AutoQueue:CreateButton("AutoQueueRelistBtn", LFGListFrame.CategorySelection.FindGroupButton)
+	relistBtn:SetSize(22, 22)
+	relistBtn:SetPoint("RIGHT", LFGListFrame.ApplicationViewer.EditButton, "RIGHT", 0, 0)
+	relistBtn:SetText("|T851904:0:0:0:0|t")
+	relistBtn:SetScript("OnClick", function()
 		if LFGListFrame == nil then
 			AutoQueue:ERR("Missing LFGListFrame")
 			return
 		end
 
-		if LFGListFrame.ApplicationViewer.EntryName then AutoQueue:ReQueue2(LFGListFrame.ApplicationViewer.EntryName:GetText()) end
+		if LFGListFrame.ApplicationViewer.EntryName then AutoQueue:Relist(LFGListFrame.ApplicationViewer.EntryName:GetText()) end
 	end)
 
-	requeueBtn2 = btn2
-	AutoQueue:UpdateReQueue()
-	AutoQueue:UpdateReQueue2()
+	AutoQueue:UpdateDelistBtn()
+	AutoQueue:UpdateRelistBtn()
 end
 
 function AutoQueue:ThinkLFD()

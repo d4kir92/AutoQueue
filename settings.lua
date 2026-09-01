@@ -49,7 +49,7 @@ end
 
 function AutoQueue:InitSettings()
 	AQTAB = AQTAB or {}
-	AutoQueue:SetVersion(136056, "1.0.36")
+	AutoQueue:SetVersion(136056, "1.1.0")
 	AutoQueue:AddSlash("aq", AutoQueue.ToggleSettings)
 	AutoQueue:AddSlash("autoqueue", AutoQueue.ToggleSettings)
 	aqset = AutoQueue:CreateUIWindow({
@@ -80,8 +80,8 @@ function AutoQueue:InitSettings()
 	end)
 
 	AddCheckbox("REQUEUE", true, function()
-		AutoQueue:UpdateReQueue()
-		AutoQueue:UpdateReQueue2()
+		AutoQueue:UpdateDelistBtn()
+		AutoQueue:UpdateRelistBtn()
 	end)
 
 	aqset:ResumeLayout()
