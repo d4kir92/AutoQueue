@@ -1,12 +1,26 @@
 local _, AutoQueue = ...
-local ts = 0.1
+local queueExists = false
 local requeueBtn = nil
+local requeueBtn2 = nil
 function AutoQueue:UpdateReQueue()
 	if requeueBtn == nil then return end
 	if AutoQueue:GV(AQTAB, "REQUEUE", true) then
 		requeueBtn:Show()
 	else
 		requeueBtn:Hide()
+	end
+end
+
+function AutoQueue:UpdateReQueue2()
+	if requeueBtn2 == nil then return end
+	if AutoQueue:GV(AQTAB, "REQUEUE", true) then
+		if queueExists then
+			requeueBtn2:Show()
+		else
+			requeueBtn2:Hide()
+		end
+	else
+		requeueBtn2:Hide()
 	end
 end
 
@@ -26,46 +40,45 @@ function AutoQueue:ReQueue(text)
 		return
 	end
 
-	AutoQueue:TryRun(function() LFGListFrame.ApplicationViewer.RemoveEntryButton:Click() end)
-	AutoQueue:After(ts, function()
-		if LFGListFrame.CategorySelection == nil then
-			AutoQueue:ERR("Missing CategorySelection")
-			return
-		end
+	LFGListFrame.ApplicationViewer.RemoveEntryButton:Click()
+	queueExists = true
+	AutoQueue:UpdateReQueue2()
+end
 
-		if LFGListFrame.CategorySelection.StartGroupButton == nil then
-			AutoQueue:ERR("Missing StartGroupButton")
-			return
-		end
+function AutoQueue:ReQueue2(text)
+	if LFGListFrame.CategorySelection == nil then
+		AutoQueue:ERR("Missing CategorySelection")
+		return
+	end
 
-		local startedGroup = AutoQueue:TryRun(function() LFGListFrame.CategorySelection.StartGroupButton:Click() end)
-		if startedGroup then
-			AutoQueue:After(ts, function()
-				if LFGListFrame.EntryCreation == nil then
-					AutoQueue:ERR("Missing EntryCreation")
-					return
-				end
+	if LFGListFrame.CategorySelection.StartGroupButton == nil then
+		AutoQueue:ERR("Missing StartGroupButton")
+		return
+	end
 
-				if LFGListFrame.EntryCreation.Name == nil then
-					AutoQueue:ERR("Missing EntryCreation.Name")
-					return
-				end
+	LFGListFrame.CategorySelection.StartGroupButton:Click()
+	if LFGListFrame.EntryCreation == nil then
+		AutoQueue:ERR("Missing EntryCreation")
+		return
+	end
 
-				if false then
-					LFGListFrame.EntryCreation.Name:SetText(text) -- Call is illegal when disabled by security settings.
-				end
+	if LFGListFrame.EntryCreation.Name == nil then
+		AutoQueue:ERR("Missing EntryCreation.Name")
+		return
+	end
 
-				if LFGListFrame.EntryCreation.ListGroupButton == nil then
-					AutoQueue:ERR("Missing ListGroupButton")
-					return
-				end
+	if false then
+		LFGListFrame.EntryCreation.Name:SetText(text) -- Call is illegal when disabled by security settings.
+	end
 
-				if false then
-					LFGListFrame.EntryCreation.ListGroupButton:Click() -- tried to call the protected function 'CreateListing()'.
-				end
-			end, "Entry Details")
-		end
-	end, "START")
+	if LFGListFrame.EntryCreation.ListGroupButton == nil then
+		AutoQueue:ERR("Missing ListGroupButton")
+		return
+	end
+
+	if false then
+		LFGListFrame.EntryCreation.ListGroupButton:Click() -- tried to call the protected function 'CreateListing()'.
+	end
 end
 
 function AutoQueue:InitReQueue()
@@ -98,7 +111,21 @@ function AutoQueue:InitReQueue()
 	end)
 
 	requeueBtn = btn
+	local btn2 = AutoQueue:CreateButton("ReQueue", LFGListFrame.CategorySelection.FindGroupButton)
+	btn2:SetSize(22, 22)
+	btn2:SetPoint("RIGHT", LFGListFrame.ApplicationViewer.EditButton, "RIGHT", 0, 0)
+	btn2:SetText("|T851904:0:0:0:0|t")
+	btn2:SetScript("OnClick", function()
+		if LFGListFrame == nil then
+			AutoQueue:ERR("Missing LFGListFrame")
+			return
+		end
+
+		if LFGListFrame.ApplicationViewer.EntryName then AutoQueue:ReQueue2(LFGListFrame.ApplicationViewer.EntryName:GetText()) end
+	end)
+
 	AutoQueue:UpdateReQueue()
+	AutoQueue:UpdateReQueue2()
 end
 
 function AutoQueue:ThinkLFD()

@@ -79,7 +79,11 @@ function AutoQueue:InitSettings()
 		end
 	end)
 
-	AddCheckbox("REQUEUE", true, function() AutoQueue:UpdateReQueue() end)
+	AddCheckbox("REQUEUE", true, function()
+		AutoQueue:UpdateReQueue()
+		AutoQueue:UpdateReQueue2()
+	end)
+
 	aqset:ResumeLayout()
 	AutoQueue:CreateMinimapButton({
 		["name"] = "AutoQueue",
