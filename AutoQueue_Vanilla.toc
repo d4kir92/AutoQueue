@@ -45,4 +45,5 @@ locale\ruRU.lua
 locale\zhCN.lua
 locale\zhTW.lua
 
+settings.lua
 core.lua

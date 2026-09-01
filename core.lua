@@ -1,5 +1,15 @@
 local _, AutoQueue = ...
 local ts = 0.1
+local requeueBtn = nil
+function AutoQueue:UpdateReQueue()
+	if requeueBtn == nil then return end
+	if AutoQueue:GV(AQTAB, "REQUEUE", true) then
+		requeueBtn:Show()
+	else
+		requeueBtn:Hide()
+	end
+end
+
 function AutoQueue:ReQueue(text)
 	if LFGListFrame == nil then
 		AutoQueue:ERR("Missing LFGListFrame")
@@ -86,6 +96,9 @@ function AutoQueue:InitReQueue()
 
 		if LFGListFrame.ApplicationViewer.EntryName then AutoQueue:ReQueue(LFGListFrame.ApplicationViewer.EntryName:GetText()) end
 	end)
+
+	requeueBtn = btn
+	AutoQueue:UpdateReQueue()
 end
 
 function AutoQueue:ThinkLFD()
@@ -109,9 +122,9 @@ AutoQueue:RegisterEvent(auf, "PLAYER_LOGIN")
 AutoQueue:OnEvent(auf, function()
 	AutoQueue:UnregisterEvent(auf, "PLAYER_LOGIN")
 	AutoQueue:SetAddonOutput("AutoQueue", 136056)
-	AutoQueue:SetVersion(136056, "1.0.36")
 	if AQTAB == nil then AQTAB = AQTAB or {} end
 	AutoQueue:SetDbTab(AQTAB)
+	AutoQueue:InitSettings()
 	AutoQueue:InitAutoQueue()
 	AutoQueue:InitReQueue()
 end, "AutoQueue")
