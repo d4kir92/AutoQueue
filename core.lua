@@ -124,6 +124,7 @@ function AutoQueue:InitReQueue()
 		if LFGListFrame.ApplicationViewer.EntryName then AutoQueue:ReQueue2(LFGListFrame.ApplicationViewer.EntryName:GetText()) end
 	end)
 
+	requeueBtn2 = btn2
 	AutoQueue:UpdateReQueue()
 	AutoQueue:UpdateReQueue2()
 end
