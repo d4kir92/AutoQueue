@@ -49,7 +49,7 @@ end
 
 function AutoQueue:InitSettings()
 	AQTAB = AQTAB or {}
-	AutoQueue:SetVersion(136056, "1.1.2")
+	AutoQueue:SetVersion(136056, "1.1.3")
 	AutoQueue:AddSlash("aq", AutoQueue.ToggleSettings)
 	AutoQueue:AddSlash("autoqueue", AutoQueue.ToggleSettings)
 	aqset = AutoQueue:CreateUIWindow({
