@@ -49,7 +49,7 @@ end
 
 function AutoQueue:InitSettings()
 	AQTAB = AQTAB or {}
-	AutoQueue:SetVersion(136056, "1.1.7")
+	AutoQueue:SetVersion()
 	AutoQueue:AddSlash("aq", AutoQueue.ToggleSettings)
 	AutoQueue:AddSlash("autoqueue", AutoQueue.ToggleSettings)
 	aqset = AutoQueue:CreateUIWindow({
@@ -65,7 +65,7 @@ function AutoQueue:InitSettings()
 		end,
 		["getCollapsed"] = function(key) return GetCollapsed(key) end,
 		["setCollapsed"] = function(key, collapsed) SetCollapsed(key, collapsed) end,
-		["title"] = format("|T136056:16:16:0:0|t AutoQueue v%s", AutoQueue:GetVersion())
+		["title"] = format("|T%s:16:16:0:0|t AutoQueue v%s", AutoQueue:GetAddonIcon(), AutoQueue:GetVersion())
 	})
 
 	aqset:SuspendLayout()
@@ -87,9 +87,9 @@ function AutoQueue:InitSettings()
 	aqset:ResumeLayout()
 	AutoQueue:CreateMinimapButton({
 		["name"] = "AutoQueue",
-		["icon"] = 136056,
+		["icon"] = AutoQueue:GetAddonIcon(),
 		["dbtab"] = AQTAB,
-		["vTT"] = {{"|T136056:16:16:0:0|t AutoQueue", "v" .. AutoQueue:GetVersion()}, {AutoQueue:Trans("LID_LEFTCLICK"), AutoQueue:Trans("LID_OPENSETTINGS")}, {AutoQueue:Trans("LID_SHIFTRIGHTCLICK"), AutoQueue:Trans("LID_HIDEMINIMAPBUTTON")}},
+		["vTT"] = {{format("|T%s:16:16:0:0|t AutoQueue", AutoQueue:GetAddonIcon()),"v" .. AutoQueue:GetVersion()}, {AutoQueue:Trans("LID_LEFTCLICK"), AutoQueue:Trans("LID_OPENSETTINGS")}, {AutoQueue:Trans("LID_SHIFTRIGHTCLICK"), AutoQueue:Trans("LID_HIDEMINIMAPBUTTON")}},
 		["funcL"] = function() AutoQueue:ToggleSettings() end,
 		["funcSR"] = function()
 			AutoQueue:SV(AQTAB, "MMBTN", false)

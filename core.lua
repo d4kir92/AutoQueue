@@ -157,7 +157,7 @@ local auf = CreateFrame("Frame")
 AutoQueue:RegisterEvent(auf, "PLAYER_LOGIN")
 AutoQueue:OnEvent(auf, function()
 	AutoQueue:UnregisterEvent(auf, "PLAYER_LOGIN")
-	AutoQueue:SetAddonOutput("AutoQueue", 136056)
+	AutoQueue:SetAddonOutput()
 	if AQTAB == nil then AQTAB = AQTAB or {} end
 	AutoQueue:SetDbTab(AQTAB)
 	AutoQueue:InitSettings()
